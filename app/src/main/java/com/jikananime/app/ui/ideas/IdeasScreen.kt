@@ -1,4 +1,4 @@
-package com.jikananime.app.ui.screen.ideas
+package com.jikananime.app.ui.ideas
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
