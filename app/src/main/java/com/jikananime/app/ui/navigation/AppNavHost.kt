@@ -21,7 +21,7 @@ sealed class Screen(val route: String) {
 fun AppNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.AnimeList.route
+        startDestination = Screen.Ideas.route
     ) {
         composable(Screen.AnimeList.route) { AnimeListScreen() }
         composable(Screen.Search.route) { SearchScreen() }
