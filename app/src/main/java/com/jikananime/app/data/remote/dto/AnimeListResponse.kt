@@ -6,6 +6,7 @@ data class AnimeListResponse(
 
 data class AnimeDto(
     val mal_id: Int,
+    val title: String,
     val url: String,
     val images: ImagesDto
 )

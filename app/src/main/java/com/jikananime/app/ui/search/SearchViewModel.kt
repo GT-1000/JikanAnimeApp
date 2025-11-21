@@ -11,7 +11,6 @@ class SearchViewModel : ViewModel() {
 
     fun searchById(id: Int) {
         viewModelScope.launch {
-            // TODO
         }
     }
 }
