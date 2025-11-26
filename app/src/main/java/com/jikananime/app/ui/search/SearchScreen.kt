@@ -1,5 +1,7 @@
 package com.jikananime.app.ui.search
 
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.rememberScrollState
 import android.R.attr.contentDescription
 import android.R.attr.label
 import android.R.attr.text
@@ -40,7 +42,8 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
-    ){
+            .verticalScroll(rememberScrollState())
+    ) {
         Text("Search for anime (ID)")
         TextField(
             value = id,
