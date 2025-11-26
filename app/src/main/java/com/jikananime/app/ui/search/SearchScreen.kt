@@ -5,6 +5,7 @@ import androidx.compose.foundation.rememberScrollState
 import android.R.attr.contentDescription
 import android.R.attr.label
 import android.R.attr.text
+import android.R.attr.top
 import android.R.id.bold
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
@@ -50,15 +51,33 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
             onValueChange = {id = it},
             label = {Text("Anime ID")}
         )
-        OutlinedButton(
-            onClick = {
-                val parsed = id.toIntOrNull()
-                if (parsed != null){
-                    searchViewModel.searchById(parsed)
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+
+        ){
+            OutlinedButton(
+                onClick = {
+                    val parsed = id.toIntOrNull()
+                    if (parsed != null){
+                        searchViewModel.searchById(parsed)
+                    }
                 }
+            ) {
+                Text("Search")
             }
-        ) {
-            Text("Search")
+
+            OutlinedButton(
+                onClick = {
+                    id = ""
+                    searchViewModel.clear()
+                }
+            ) {
+                Text("Clear")
+            }
         }
 
         Spacer(modifier = Modifier.height(12.dp))

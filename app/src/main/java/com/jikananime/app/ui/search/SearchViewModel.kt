@@ -42,4 +42,10 @@ class SearchViewModel : ViewModel() {
             }
         }
     }
+
+    fun clear() {
+        _anime.value = null
+        _error.value = null
+        _loading.value = false
+    }
 }
