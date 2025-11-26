@@ -41,7 +41,7 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
             .fillMaxSize()
             .padding(16.dp)
     ){
-        Text("Søk etter anime (ID)")
+        Text("Search for anime (ID)")
         TextField(
             value = id,
             onValueChange = {id = it},
@@ -55,7 +55,7 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
                 }
             }
         ) {
-            Text("Søk")
+            Text("Search")
         }
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -65,7 +65,7 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Laster...")
+                Text("Loading...")
             }
             return@Column
         }
@@ -117,7 +117,7 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
-            Text("Ingen anime – skriv ID og søk")
+            Text("No anime found — enter an ID and search")
         }
     }
 }

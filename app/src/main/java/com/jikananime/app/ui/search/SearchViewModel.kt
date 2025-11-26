@@ -32,11 +32,11 @@ class SearchViewModel : ViewModel() {
                 _anime.value = response.data
 
                 if (response.data == null) {
-                    _error.value = "Fant ingen anime med ID $id"
+                    _error.value = "No anime found with ID $id"
                 }
             } catch (e: Exception){
                 e.printStackTrace()
-                _error.value = "Fant ingen anime med ID $id"
+                _error.value = "No anime found with ID $id"
             } finally {
                 _loading.value = false
             }

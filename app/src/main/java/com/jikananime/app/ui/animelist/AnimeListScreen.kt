@@ -121,7 +121,7 @@ fun AnimeListItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "Trykk for detaljer",
+                    text = "Tap for details",
                     style = MaterialTheme.typography.bodySmall,
                     color = Color(0xFF6F6F6F)
                 )

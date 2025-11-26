@@ -3,9 +3,9 @@
 package com.jikananime.app.ui.navigation
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -24,7 +24,6 @@ import com.jikananime.app.ui.search.SearchScreen
 @Composable
 fun AppNavHost(navController: NavHostController) {
 
-    // Hvilken skjerm er vi på?
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route ?: Screen.AnimeList.route
 
@@ -34,18 +33,28 @@ fun AppNavHost(navController: NavHostController) {
                 title = {
                     Text(
                         when {
-                            currentRoute.startsWith("details") -> "Detaljer"
-                            currentRoute == Screen.Search.route -> "Søk"
-                            currentRoute == Screen.Ideas.route -> "Ideer"
+                            currentRoute.startsWith("details") -> "Back"
+                            currentRoute == Screen.Search.route -> "Search"
+                            currentRoute == Screen.Ideas.route -> "Ideas"
                             currentRoute == Screen.Custom.route -> "Custom"
                             else -> "Top Anime"
                         }
                     )
+                },
+                navigationIcon = {
+                    // Tilbake-knapp kun på details-screen
+                    if (currentRoute.startsWith("details")) {
+                        IconButton(onClick = { navController.navigateUp() }) {
+                            Icon(
+                                imageVector = Icons.Filled.ArrowBack,
+                                contentDescription = "Back"
+                            )
+                        }
+                    }
                 }
             )
         },
         bottomBar = {
-            // Skjul bunnbaren på detail side
             if (!currentRoute.startsWith("details")) {
                 BottomNavBar(navController, currentRoute)
             }
@@ -67,7 +76,7 @@ fun AppNavHost(navController: NavHostController) {
                 )
             }
 
-            // (Skjelett)
+            // DETAILS
             composable(
                 Screen.Details.route,
                 arguments = listOf(

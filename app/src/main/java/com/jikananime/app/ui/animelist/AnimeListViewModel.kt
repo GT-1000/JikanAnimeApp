@@ -38,7 +38,7 @@ class AnimeListViewModel : ViewModel() {
 
             } catch (e: Exception) {
                 e.printStackTrace()
-                _errorMessage.value = "Kunne ikke hente anime ❌"
+                _errorMessage.value = "Could not load anime ❌"
             } finally {
                 _isLoading.value = false
             }
