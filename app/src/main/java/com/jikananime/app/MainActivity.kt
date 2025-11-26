@@ -11,6 +11,7 @@ import com.jikananime.app.ui.navigation.AppNavHost
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AnimeDbRepository.initializeDatabase(this)
         setContent {
             val navController = rememberNavController()
 

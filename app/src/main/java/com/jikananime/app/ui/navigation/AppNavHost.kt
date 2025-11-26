@@ -18,7 +18,7 @@ import androidx.navigation.navArgument
 import com.jikananime.app.ui.animelist.AnimeListScreen
 import com.jikananime.app.ui.custom.CustomScreen
 import com.jikananime.app.ui.details.DetailScreen
-import com.jikananime.app.ui.ideas.IdeasScreen
+import com.jikananime.app.ui.screen.ideas.IdeasScreen
 import com.jikananime.app.ui.search.SearchScreen
 
 @Composable
