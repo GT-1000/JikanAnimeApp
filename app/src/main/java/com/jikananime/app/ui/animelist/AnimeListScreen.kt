@@ -11,8 +11,9 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,23 +40,50 @@ fun AnimeListScreen(
             )
 
             errorMessage != null -> Text(
-                text = "Feil: $errorMessage",
+                text = "Error: $errorMessage",
                 color = Color.Red,
                 modifier = Modifier.align(Alignment.Center)
             )
 
-            else -> LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(12.dp)
-            ) {
-                itemsIndexed(animeList) { index, anime ->
-                    AnimeListItem(
-                        number = index + 1,
-                        title = anime.title,
-                        imageUrl = anime.images.jpg.image_url,
-                        onClick = { onAnimeClick(anime.mal_id) }
+            else -> {
+
+                var searchText by remember { mutableStateOf("") }
+
+                val filteredList = animeList.filter { anime ->
+                    anime.title.contains(searchText, ignoreCase = true)
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(12.dp)
+                ) {
+
+                    // 🔍 Search input
+                    TextField(
+                        value = searchText,
+                        onValueChange = { searchText = it },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 12.dp),
+                        label = { Text("Search anime") },
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color(0xFFF4F4F4),
+                            unfocusedContainerColor = Color(0xFFF4F4F4)
+                        )
                     )
+
+                    // Anime list (filtered)
+                    LazyColumn {
+                        itemsIndexed(filteredList) { index, anime ->
+                            AnimeListItem(
+                                number = index + 1,
+                                title = anime.title,
+                                imageUrl = anime.images.jpg.image_url,
+                                onClick = { onAnimeClick(anime.mal_id) }
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -90,7 +118,7 @@ fun AnimeListItem(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            // Number box
+            // Number
             Text(
                 text = "$number.",
                 style = MaterialTheme.typography.titleMedium,
