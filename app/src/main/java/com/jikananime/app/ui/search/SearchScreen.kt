@@ -3,6 +3,7 @@ package com.jikananime.app.ui.search
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.rememberScrollState
 import android.R.attr.contentDescription
+import android.R.attr.id
 import android.R.attr.label
 import android.R.attr.text
 import android.R.attr.top
@@ -38,6 +39,9 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
     var id by remember {
         mutableStateOf("")
     }
+    var validationError by remember {
+        mutableStateOf<String?>(null)
+    }
 
     Column(
         modifier = Modifier
@@ -48,9 +52,19 @@ fun SearchScreen(searchViewModel: SearchViewModel = viewModel()) {
         Text("Search for anime (ID)")
         TextField(
             value = id,
-            onValueChange = {id = it},
+            onValueChange = {
+                id = it
+                validationError = searchViewModel.validateId(it) },
             label = {Text("Anime ID")}
         )
+
+        validationError?.let {
+            Text(
+                text = it,
+                color = Red,
+                modifier = Modifier.padding(top = 4.dp)
+            )
+        }
 
         Row(
             modifier = Modifier

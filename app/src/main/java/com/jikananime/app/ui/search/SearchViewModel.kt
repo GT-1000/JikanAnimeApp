@@ -48,4 +48,13 @@ class SearchViewModel : ViewModel() {
         _error.value = null
         _loading.value = false
     }
+
+    fun validateId(input: String): String? {
+        if (input.isBlank()) return null
+        return if (input.toIntOrNull() == null) {
+            "ID must be a number"
+        } else {
+            null
+        }
+    }
 }
