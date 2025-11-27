@@ -46,7 +46,7 @@ fun BottomNavBar(navController: NavHostController, currentRoute: String?) {
             selected = currentRoute == Screen.Custom.route,
             onClick = { navController.navigate(Screen.Custom.route) },
             icon = { Icon(Icons.Filled.Star, contentDescription = "Custom") },
-            label = { Text("Custom") }
+            label = { Text("Anime Facts") }
         )
     }
 }

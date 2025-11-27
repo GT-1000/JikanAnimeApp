@@ -36,7 +36,7 @@ fun AppNavHost(navController: NavHostController) {
                             currentRoute.startsWith("details") -> "Back"
                             currentRoute == Screen.Search.route -> "Search"
                             currentRoute == Screen.Ideas.route -> "Ideas"
-                            currentRoute == Screen.Custom.route -> "Custom"
+                            currentRoute == Screen.Custom.route -> "Anime Facts"
                             else -> "Top Anime"
                         }
                     )
