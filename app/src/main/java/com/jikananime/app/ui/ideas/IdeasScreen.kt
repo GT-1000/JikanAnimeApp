@@ -27,7 +27,6 @@ import com.jikananime.app.data.room.Anime
 import kotlinx.coroutines.launch
 
 
-// this
 @Composable
 fun IdeasScreen() {
     var ideaTitle by remember { mutableStateOf("") }
