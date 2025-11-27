@@ -9,4 +9,5 @@ data class Anime(
     val id: Int = 0,
     val title: String,
     val synopsis: String,
+    val creator: String
 )

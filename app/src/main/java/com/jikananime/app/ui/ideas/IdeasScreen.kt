@@ -49,18 +49,11 @@ fun IdeasScreen() {
             .background(Color(122, 158, 159))
     ) {
         Text(
-            "Create your own anime!", fontSize = 40.sp,
+            "Create your own anime!", fontSize = 30.sp,
             modifier = Modifier
                 .fillMaxWidth()
                 .background(Color(247, 151, 126)),
             color = Color(30, 30, 30),
-            textAlign = TextAlign.Center
-        )
-        Text(
-            "Here are all your ideas", fontSize = 30.sp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp),
             textAlign = TextAlign.Center
         )
 
@@ -108,10 +101,12 @@ fun IdeasScreen() {
             )
         )
 
-        Button(onClick = {
+        Button(
+            modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp),
+            onClick = {
             scope.launch {
-                if (ideaTitle.isNotBlank() && ideaSynopsis.isNotBlank()) {
-                    val newAnime = Anime(title = ideaTitle, synopsis = ideaSynopsis)
+                if (ideaTitle.isNotBlank() && ideaSynopsis.isNotBlank() && ideaCreator.isNotBlank()) {
+                    val newAnime = Anime(title = ideaTitle, synopsis = ideaSynopsis, creator = ideaCreator)
                     AnimeDbRepository.insertAnime(newAnime)
                     animeList = AnimeDbRepository.getMyAnimes()
                     ideaTitle = ""
@@ -123,11 +118,15 @@ fun IdeasScreen() {
             Text("Add anime")
         }
 
+        Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp)) {
+            Text(text = "Anime ideas", fontSize = 18.sp)
+        }
 
         animeList.forEach { anime ->
             Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 8.dp)) {
                 Text(text = "Title: ${anime.title}", fontSize = 18.sp)
-                Text(text = anime.synopsis)
+                Text(text = "Creator: ${anime.creator}", fontSize = 16.sp)
+                Text(text = "Synopsis: ${anime.synopsis}", fontSize = 12.sp)
                 Button(onClick = {
                     scope.launch {
                         AnimeDbRepository.deleteAnime(anime.id)
