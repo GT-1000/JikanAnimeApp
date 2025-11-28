@@ -18,5 +18,3 @@ interface AnimeDao {
     suspend fun deleteAnimeById(id: Int)
 }
 
-
-

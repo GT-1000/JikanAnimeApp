@@ -42,7 +42,6 @@ fun AppNavHost(navController: NavHostController) {
                     )
                 },
                 navigationIcon = {
-                    // Tilbake-knapp kun på details-screen
                     if (currentRoute.startsWith("details")) {
                         IconButton(onClick = { navController.navigateUp() }) {
                             Icon(
